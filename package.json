@@ -1,0 +1,58 @@
+{
+  "name": "open-tender-web",
+  "version": "4.7.4",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@google-pay/button-react": "^3.0.0",
+    "@open-tender/components": "^5.1.5",
+    "@open-tender/hooks": "^1.1.0",
+    "@open-tender/js": "^2.3.1",
+    "@open-tender/redux": "^3.0.15",
+    "@reduxjs/toolkit": "^1.6.2",
+    "@sentry/react": "^7.11.1",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "env-cmd": "^10.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^18.1.0",
+    "react-copy-to-clipboard": "^5.0.4",
+    "react-device-detect": "^2.1.2",
+    "react-dom": "^18.1.0",
+    "react-feather": "^2.0.9",
+    "react-gtm-module": "^2.0.11",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "6.3.0",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.4",
+    "react-spinners": "^0.12.0",
+    "react-swipeable": "^7.0.0",
+    "react-transition-group": "^4.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build:staging": "env-cmd -f .env.staging yarn build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prebuild": "node generate-version"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}

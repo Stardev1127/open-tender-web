@@ -1,0 +1,33 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.opentenderapp",
+      "sha256_cert_fingerprints": [
+        "D7:A2:01:DD:7C:61:C6:ED:A6:34:90:C3:EA:12:52:80:59:5B:0D:F7:E5:DF:47:BC:25:3B:C4:17:6C:64:70:C8",
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "brownbagseafoodco.app",
+      "sha256_cert_fingerprints": [
+        "0D:C1:34:E5:F6:43:DD:F1:8A:61:00:23:90:D0:AF:0E:3C:54:5F:0C:A0:AD:0F:B4:11:3B:1D:29:A5:94:A9:15"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "mangia.app",
+      "sha256_cert_fingerprints": [
+        "F2:BD:CA:39:15:84:7C:72:60:03:7C:59:BE:3A:A4:42:19:30:52:E8:D6:51:30:EE:E4:5F:A0:F3:EF:F4:9E:F5"
+      ]
+    }
+  }
+]

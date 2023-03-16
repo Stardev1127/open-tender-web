@@ -1,0 +1,75 @@
+# https://github.com/sanctuarycomputer/studio/wiki/Shipping-Code#setup-automated-testing--deployments
+version: 2
+
+defaults: &defaults
+  working_directory: ~/open-tender-web
+  docker:
+    - image: circleci/node:14-browsers
+
+jobs:
+  deploy-staging:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/open-tender-web
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths: .
+      - run: NODE_ENV=production CI="" yarn build:staging
+      - run: sudo apt-get update
+      - run: sudo apt-get install python-dev python-pip
+      - run: sudo pip install awscli
+      - run: aws configure set preview.cloudfront true
+      - run: aws s3 sync build s3://io-opentender-web-sandbox/ --delete
+      - run: aws s3 cp build/index.html s3://io-opentender-web-sandbox/ --cache-control max-age=0
+      - run: aws cloudfront create-invalidation --distribution-id E3GL9R3MGIXYQ7 --paths '/*'
+
+  deploy-production:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/open-tender-web
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths: .
+      - run: NODE_ENV=production CI="" yarn build
+      - run: sudo apt-get update
+      - run: sudo apt-get install python-dev python-pip
+      - run: sudo pip install awscli
+      - run: aws configure set preview.cloudfront true
+      - run: aws s3 sync build s3://io-opentender-web-production/ --delete
+      - run: aws s3 cp build/index.html s3://io-opentender-web-production/ --cache-control max-age=0
+      - run: aws cloudfront create-invalidation --distribution-id E3M9U7ONDMILBH --paths '/*'
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - deploy-staging:
+          filters:
+            branches:
+              only: staging
+      - deploy-production:
+          filters:
+            branches:
+              only: production

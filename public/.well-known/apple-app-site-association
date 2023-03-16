@@ -1,0 +1,25 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "3F56ZV8XUQ.opentender.app",
+        "paths": [
+          "/qr/*"
+        ]
+      },
+      {
+        "appID": "2H48VH7D3K.brownbagseafoodco.app",
+        "paths": [
+          "/qr/*"
+        ]
+      },
+      {
+        "appID": "5QH3J23742.mangia.app",
+        "paths": [
+          "/qr/*"
+        ]
+      }
+    ]
+  }
+}
